@@ -1,0 +1,90 @@
+package com.minhaweb.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.minhaweb.model.Produto;
+import com.minhaweb.service.ProdutoCliente;
+import com.minhaweb.service.ProdutoServiceImpl;
+
+@Controller
+@RequestMapping("/web/produto")
+@CrossOrigin("*")
+public class ProdutoController {
+	
+	private ProdutoServiceImpl prodService = 
+			ProdutoCliente.getInstance().getProdutoService();
+	
+	@GetMapping("listar")
+	public String obterTodos(Model model){
+		List<Produto> lista = new ArrayList<>();
+		try {
+			lista = prodService.obterTodos();
+		}catch(Exception e) {
+			model.addAttribute("mensagem", "Erro de conexão!");
+		}
+		model.addAttribute("produtos", lista);
+		return "listaProdutos";
+	}
+	
+	
+	@GetMapping("dados/{codigo}")
+	public ModelAndView recuperar(@PathVariable("codigo") Integer codigo) {
+		try {
+			Produto produto = prodService.obter(codigo);
+			return new ModelAndView("dadosProduto","produto",produto);
+		}catch(Exception e) {
+			return novo();
+		}
+	}
+	
+	@GetMapping("dados")
+	public ModelAndView novo() {
+		return new ModelAndView("dadosProduto","produto",new Produto());
+	}
+	
+	@PostMapping("dados")
+	public String gravar(@ModelAttribute("produto") Produto produto, Model model) {
+		try {
+			prodService.inserir(produto);
+			model.addAttribute("mensagem", "Produto incluído com sucesso!");
+		}catch(Exception e) {
+			model.addAttribute("mensagem", "Erro ao incluir produto!");
+		}
+		return obterTodos(model);
+	}
+	
+	@PostMapping("dados/{codigo}")
+	public String gravar(@PathVariable("codigo") Integer codigo,
+		   @ModelAttribute("produto") Produto produto, Model model) {
+		try {
+			prodService.alterar(codigo, produto);
+			model.addAttribute("mensagem", "Produto alterado com sucesso!");
+		}catch(Exception e) {
+			model.addAttribute("mensagem", "Erro ao alterar produto!");
+		}
+		return obterTodos(model);
+	}
+	
+	@GetMapping("excluir/{codigo}")
+	public String excluir(@PathVariable("codigo") Integer codigo, Model model) {
+		try {
+			prodService.excluir(codigo);
+			model.addAttribute("mensagem", "Produto excluído com sucesso!");
+		}catch(Exception e) {
+			model.addAttribute("mensagem", "Erro ao excluir produto!");
+		}
+		return obterTodos(model);
+	}
+	
+}
