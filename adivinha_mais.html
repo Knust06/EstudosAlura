@@ -1,0 +1,44 @@
+<meta charset="UTF-8">
+
+
+<input/>
+<button>Clique aqui para a mágica</button>
+ 
+<script>
+    function pulaLinha() {
+        document.write("<br>");
+    }
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+    function sorteia(n) {
+        return Math.round(Math.random() * n);
+    }
+        var sorteiaNumero = prompt("Em quantos números você quer que eu pense?");
+        var numeroPensado = sorteia(sorteiaNumero);
+
+    function verifica() {
+        var input = document.querySelector("input");
+        if(input.value == numeroPensado) {
+            mostra("Uau! Você acertou, pois eu pensei no " + numeroPensado);
+        } else {
+            if(input.value > numeroPensado) {
+                mostra("Você errou! Seu chute é maior que o número pensado!");
+            } else {
+                mostra("Você errou! Seu chute é menor que o número pensado!");
+            }
+        }
+    }
+    //input.value = "";
+    //input.focus();
+    
+    var botao = document.querySelector("button");
+    botao.onclick = verifica;
+
+    
+
+
+
+</script>   
+

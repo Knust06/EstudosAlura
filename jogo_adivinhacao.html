@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+
+<script>
+    function pulaLinha() {
+        document.write("<br>");
+    }
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+    var numeroSecreto = parseInt(Math.random() * 11);
+    console.log(numeroSecreto);
+    var tentativa = parseInt(prompt("Digite um número entre 0 e 10: "));
+
+    if (tentativa == numeroSecreto){
+        mostra("Parabéns, você acertou!");
+    }
+    else if (tentativa != numeroSecreto) {
+        mostra(alert("Você errou! O número secreto era " + numeroSecreto), /*window.location.reload()*/);
+        //Utilizado para recarregar a página
+    }
+
+</script>

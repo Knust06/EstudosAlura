@@ -4,12 +4,6 @@
         document.write("<br>");
     }
 
-    function mostrarNome() {
-        var name = document.getElementById("nome").value;
-        document.getElementById("name").innerHTML = name;
-        
-    }
-
     function calcularIMC() {
         var peso = document.getElementById("peso").value;
         var altura = document.getElementById("altura").value;
@@ -17,9 +11,7 @@
         document.getElementById("resultado").innerHTML = imc;
                 
     }
-    
-    
-
+ 
     function mostra(frase) {
         document.write(frase);
         pulaLinha();
@@ -27,23 +19,18 @@
 
     mostra("<h1>Calculo do IMC</h1>");
 
-    mostra("<label>Nome :</label>");   
-    mostra("<input type='string' id='nome'>");
-    mostra("<button onclick='mostrarNome()'>Mostrar Nome</button>");
-    mostra("<br>Seu nome é : <span id='nome'></span>");
-
+    var nome = prompt("Qual o seu nome?");
+    
     mostra("<label><Big>****Utilize ponto para separar a casa decimal</label></big>****")
     
-    mostra("<label>Peso: </label>");
+    mostra(nome + ", <label>Seu Peso: </label>");
     mostra("<input type='text' id='peso'>");
 
-    mostra("<label>Altura: </label>");
+    mostra(nome + ", <label>Sua Altura: </label>");
     mostra("<input type='text' id='altura'>");
 
     mostra("<button onclick='calcularIMC()'>Calcular</button>");
-    mostra("<br>Seu IMC é : <span id='resultado'></span>");    
-
-    
+    mostra(nome + " Seu IMC é : <span id='resultado'></span>");    
 
 </script>
 

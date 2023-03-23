@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+<!-- 
+ -->
+<script>
+    //A função abaixo, mostra elementos na tela
+    function mostra (frase) {
+        document.write(frase);
+    }
+    function calcular (){
+        var n1 = parseInt(document.getElementById("n1").value);
+        var n2 = parseInt(document.getElementById("n2").value);
+        var operacao = document.getElementById("operacao").value;
+        var resultado = 0;
+        if (operacao == "soma"){
+            resultado = n1 + n2;
+        } else if (operacao == "subtracao"){
+            resultado = n1 - n2;
+        } else if (operacao == "multiplicacao"){
+            resultado = n1 * n2;
+        } else if (operacao == "divisao"){
+            resultado = n1 / n2;
+        }
+        document.getElementById("resultado").innerHTML = resultado;
+    }
+    mostra("<h1>Calculadora</h1>");
+    mostra("<label>Numero 1: </label>");
+    mostra("<input type='text' id='n1'>");
+    mostra("<label>Numero 2: </label>");
+    mostra("<input type='text' id='n2'>");
+    mostra("<label>Operação: </label>");
+    mostra("<select id='operacao'>");
+    mostra("<option value='soma'>Soma</option>");
+    mostra("<option value='subtracao'>Subtração</option>");
+    mostra("<option value='multiplicacao'>Multiplicação</option>");
+    mostra("<option value='divisao'>Divisão</option>");
+    mostra("</select>");
+    mostra("<button onclick='calcular()'>Calcular</button>");
+    mostra(" <span id='resultado'></span>");
+</script>
+    
+    

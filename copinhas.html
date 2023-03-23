@@ -1,0 +1,26 @@
+<meta charset=""UTF-8>
+<script>
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+    var limite = parseInt(prompt("Digite a data limite: "));
+    var anoCopa = parseInt(prompt("Digite o ano da primeira copa: "));
+
+    while (anoCopa <= limite) {
+        mostra("Teve copa em " + anoCopa);
+        anoCopa += 4;
+    }
+
+    /* OUTRA FORMA DE FAZER A REPETIÇÃO
+    for (var anoCopa = 1930; anoCopa <= 2023; anoCopa += 4) {
+        mostra(anoCopa);
+    }
+    */
+
+</script>

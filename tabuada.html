@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<script>
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+    
+    var numero = prompt("Digite um número para ver a tabuada: ");
+
+    var contador = 1;
+
+    while (contador <= 10) {
+        var resultado = numero * contador;
+        mostra(numero + " x " + contador + " = " + resultado);
+        contador = contador + 1;    
+    }
+    /*for (var contador = 1; contador <= 10; contador++) {
+        var resultado = numero * contador;
+        mostra(numero + " x " + contador + " = " + resultado);
+    }*/
+    mostra("Fim!");
+
+</script>
